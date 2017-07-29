@@ -38,15 +38,27 @@ function queryDB(sql, arrayData) {
 //     .then(sql => queryDB(sql, []));
 // }
 
-docFile('./a.txt')
-.then(sql => { 
-    sql += ' WHERE id = $1';
-    return queryDB(sql, [21]);
-})
-.then(result => result.rows[0])
-.catch(err => console.log(err.toString()))
-.then(x => console.log(x));
+// docFile('./a.txt')
+// .then(sql => { 
+//     sql += ' WHERE id = $1';
+//     return queryDB(sql, [21]);
+// })
+// .then(result => result.rows[0])
+// .catch(err => console.log(err.toString()))
+// .then(x => console.log(x));
+
+// async - await 
 
 // docFile('./a.txt')
 // .then(sql => 100)
 // .then(x => console.log(x));
+
+const queryFromFile = async (file) => {
+    const sql = await docFile(file);
+    const result = await queryDB(sql, []);
+    return result;
+}
+
+queryFromFile('./a.txt')
+.then(result => console.log(result.rows))
+.catch(err => console.log(err.toString()));
