@@ -1,5 +1,4 @@
 const pg = require('pg');
-const fs = require('fs');
 
 const pool = new pg.Pool({
     host: 'localhost',
@@ -24,14 +23,20 @@ function queryDB(sql, arrayData) {
     });
 }
 
-// const queryFromFile = async (file) => {
-//     const sql = await docFile(file);
-//     const result = await queryDB(sql, []);
-//     return result;
-// }
+// queryDB('SELECT * FROM "Prduct"', [])
+// .then(
+//     result => result.rows,
+//     err => []
+// )
+// .then(kq => console.log(kq));
 
-// queryFromFile('./a.txt')
-// .then(result => console.log(result.rows))
-// .catch(err => console.log(err.toString()));
+// queryDB('SELECT * FROM "Prduct"', [])
+// .then(result => result.rows)
+// .catch(err => [])
+// .then(kq => console.log(kq));
 
-module.exports = queryDB;
+// Promise.resolve(queryDB('SELECT * FROM "Product"'))
+// .then(a => console.log(a.rows));
+
+Promise.reject(100)
+.catch(a => console.log(a));
